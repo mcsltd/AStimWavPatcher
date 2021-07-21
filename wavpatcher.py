@@ -1,6 +1,7 @@
 import os
 import argparse
 import traceback
+from scipy.io import wavfile
 
 
 class Error(Exception):
@@ -11,9 +12,9 @@ class Error(Exception):
 def main():
     try:
         input_file, output_file = _parse_args()
-        channels, params = _read_file(input_file)
+        samplerate, channels = _read_file(input_file)
         channels = _add_trigger(channels)
-        _write_file(channels, params, output_file)
+        _write_file(channels, samplerate, output_file)
     except Error as exc:
         print("Error: {0}\n".format(exc))
     except Exception as exc:
@@ -38,6 +39,13 @@ def _parse_args():
     data = parser.parse_args()
     output_file = data.output_file or data.input_file
     return data.input_file, output_file
+
+
+def _read_file(filepath):
+    if not os.path.exists(filepath):
+        raise Error("File {0} not found!".format(filepath))
+    filepath = os.path.abspath(filepath)
+    return wavfile.read(filepath)
 
 
 if __name__ == "__main__":
