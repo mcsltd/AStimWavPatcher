@@ -2,6 +2,16 @@ import os
 import argparse
 import traceback
 from scipy.io import wavfile
+import numpy as np
+from enum import Enum, auto
+
+_SILENCE = 15
+
+
+class Ears(Enum):
+    LEFT = auto()
+    RIGHT = auto()
+    BOTH = auto()
 
 
 class Error(Exception):
@@ -13,7 +23,7 @@ def main():
     try:
         input_file, output_file = _parse_args()
         samplerate, channels = _read_file(input_file)
-        channels = _add_trigger(channels)
+        channels = _add_trigger(channels, Ears.BOTH)
         _write_file(channels, samplerate, output_file)
     except Error as exc:
         print("Error: {0}\n".format(exc))
@@ -46,6 +56,70 @@ def _read_file(filepath):
         raise Error("File {0} not found!".format(filepath))
     filepath = os.path.abspath(filepath)
     return wavfile.read(filepath)
+
+
+def _get_right_channel(size, ears):
+    max_int16 = np.iinfo(np.int16).max
+    min_int16 = np.iinfo(np.int16).min
+    result = np.zeros(size)
+    if ears == Ears.RIGHT:
+        result[1] = min_int16
+        result[2] = max_int16
+        result[3] = min_int16
+        result[4] = max_int16
+        result[5] = min_int16
+        result[6] = max_int16
+
+        result[8] = min_int16
+        result[9] = max_int16
+        result[10] = max_int16
+        result[11] = min_int16
+        result[12] = max_int16
+        result[13] = min_int16
+    elif ears == Ears.LEFT:
+        result[1] = min_int16
+        result[2] = max_int16
+        result[3] = min_int16
+        result[4] = max_int16
+        result[5] = max_int16
+        result[6] = min_int16
+
+        result[8] = min_int16
+        result[9] = max_int16
+        result[10] = max_int16
+        result[11] = min_int16
+        result[12] = min_int16
+        result[13] = max_int16
+    else:
+        result[1] = min_int16
+        result[2] = max_int16
+        result[3] = min_int16
+        result[4] = max_int16
+        result[5] = max_int16
+        result[6] = min_int16
+
+        result[8] = min_int16
+        result[9] = max_int16
+        result[10] = max_int16
+        result[11] = min_int16
+        result[12] = max_int16
+        result[13] = min_int16
+
+    result[_SILENCE] = max_int16
+    result[_SILENCE + 1] = min_int16
+    result[_SILENCE + 2] = min_int16
+    result[_SILENCE + 3] = max_int16
+    result[_SILENCE + 4] = min_int16
+    result[_SILENCE + 5] = max_int16
+
+    result[size - 6] = max_int16
+    result[size - 5] = min_int16
+    result[size - 4] = min_int16
+    result[size - 3] = max_int16
+    result[size - 2] = max_int16
+    result[size - 1] = min_int16
+
+    return result
 
 
 if __name__ == "__main__":
