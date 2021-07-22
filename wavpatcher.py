@@ -48,10 +48,9 @@ def _handle_exception(exc):
 def _parse_args():
     parser = argparse.ArgumentParser(description="Patch .wav files")
     parser.add_argument("input_file", help="Path to input .wav file")
-    parser.add_argument(
-        "output_file", help="Path to output .wav file", required=False)
+    parser.add_argument("-o", "--output", help="Path to output .wav file")
     data = parser.parse_args()
-    output_file = data.output_file or data.input_file
+    output_file = data.output or data.input_file
     return data.input_file, output_file
 
 
@@ -63,9 +62,13 @@ def _read_file(filepath):
 
 
 def _add_trigger(channels, ears):
-    left = np.zeros(_SILENCE).append(channels[:, 0])
+    if channels.ndim == 1:
+        left = channels
+    else:
+        left = channels[:, 0]
+    left = np.append(np.zeros(_SILENCE), left)
     right = _get_right_channel(len(left), ears)
-    return [left, right]
+    return np.column_stack([left, right])
 
 
 def _get_right_channel(size, ears):
