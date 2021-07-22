@@ -1,6 +1,5 @@
 import os
 import argparse
-import traceback
 from scipy.io import wavfile
 import numpy as np
 from enum import Enum, auto
@@ -14,35 +13,11 @@ class Ears(Enum):
     BOTH = auto()
 
 
-class Error(Exception):
-    def __init__(self, message):
-        super(Error, self).__init__(message)
-
-
 def main():
-    try:
-        input_file, output_file = _parse_args()
-        samplerate, channels = _read_file(input_file)
-        channels = _add_trigger(channels, Ears.BOTH)
-        wavfile.write(output_file, samplerate, channels)
-    except Error as exc:
-        print("Error: {0}\n".format(exc))
-    except Exception as exc:
-        _handle_exception(exc)
-
-
-def _is_debug():
-    return getattr(os.sys, 'gettrace', None) is not None
-
-
-def _handle_exception(exc):
-    if _is_debug():
-        raise
-    log_filename = "errors-log.txt"
-    message = "Fatal error! {0}: {1}. See details in file '{2}'."
-    print(message.format(type(exc).__name__, exc, log_filename))
-    with open(log_filename, "wt") as log:
-        log.write(traceback.format_exc())
+    input_file, output_file = _parse_args()
+    samplerate, channels = _read_file(input_file)
+    channels = _add_trigger(channels, Ears.BOTH)
+    wavfile.write(output_file, samplerate, channels)
 
 
 def _parse_args():
@@ -56,7 +31,8 @@ def _parse_args():
 
 def _read_file(filepath):
     if not os.path.exists(filepath):
-        raise Error("File {0} not found!".format(filepath))
+        print("File {0} not found!".format(filepath))
+        os.sys.exit()
     filepath = os.path.abspath(filepath)
     return wavfile.read(filepath)
 
