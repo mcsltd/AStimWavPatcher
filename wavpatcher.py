@@ -28,17 +28,21 @@ def main():
     except Error as exc:
         print("Error: {0}\n".format(exc))
     except Exception as exc:
-        if _is_debug():
-            raise
-        log_filename = "errors-log.txt"
-        message = "Fatal error! {0}: {1}. See details in file '{2}'."
-        print(message.format(type(exc).__name__, exc, log_filename))
-        with open(log_filename, "wt") as log:
-            log.write(traceback.format_exc())
+        _handle_exception(exc)
 
 
 def _is_debug():
     return getattr(os.sys, 'gettrace', None) is not None
+
+
+def _handle_exception(exc):
+    if _is_debug():
+        raise
+    log_filename = "errors-log.txt"
+    message = "Fatal error! {0}: {1}. See details in file '{2}'."
+    print(message.format(type(exc).__name__, exc, log_filename))
+    with open(log_filename, "wt") as log:
+        log.write(traceback.format_exc())
 
 
 def _parse_args():
