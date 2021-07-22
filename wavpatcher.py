@@ -24,7 +24,7 @@ def main():
         input_file, output_file = _parse_args()
         samplerate, channels = _read_file(input_file)
         channels = _add_trigger(channels, Ears.BOTH)
-        _write_file(channels, samplerate, output_file)
+        wavfile.write(output_file, samplerate, channels)
     except Error as exc:
         print("Error: {0}\n".format(exc))
     except Exception as exc:
