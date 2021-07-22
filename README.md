@@ -27,5 +27,5 @@ AStim работает с 16-битными WAV-файлами с частото
 
 ## Примеры файлов
 
-В папке [audio/examples]() приведены примеры WAV-файлов с добавленными командами в правом канале.  
-Файл [audio/examples/output_example_1s.wav]() получен в результате обработки файла [audio/origin/input_example_1s.wav]() скриптом [wavpatcher.py]()
+В папке [audio/examples](./audio/examples) приведены примеры WAV-файлов с добавленными командами в правом канале.  
+Файл [audio/examples/output_example_1s.wav](./audio/examples/output_example_1s.wav) получен в результате обработки файла [audio/origin/input_example_1s.wav](./audio/origin/input_example_1s.wav) скриптом [wavpatcher.py](./wavpatcher.py)
