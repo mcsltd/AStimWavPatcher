@@ -58,6 +58,12 @@ def _read_file(filepath):
     return wavfile.read(filepath)
 
 
+def _add_trigger(channels, ears):
+    left = np.zeros(_SILENCE).append(channels[:, 0])
+    right = _get_right_channel(len(left), ears)
+    return [left, right]
+
+
 def _get_right_channel(size, ears):
     max_int16 = np.iinfo(np.int16).max
     min_int16 = np.iinfo(np.int16).min
