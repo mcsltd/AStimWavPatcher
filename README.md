@@ -1,31 +1,31 @@
 # AStimWavPatcher
 
-Пример скрипта для записи команд AStim в файлы WAV (триггер 6).  
-AStim работает с 16-битными WAV-файлами с частотой дискретизации _44100 Гц_.
+Example script for writing AStim commands to WAV files (trigger 6).
+AStim works with 16-bit WAV files with a sampling rate of _44100 Hz_.
 
 ![](./img/nvx36+52_scheme.png)
 
-## Описание команд
+## Command Description
 
-Команды трехбитовые, каждый бит кодируется двумя последовательными 16-битными отсчетами по правому каналу:
+The commands are 3-bit, each bit is encoded with sequence of two 16-bit samples in the right channel:
 
-    Бит 0: -32768 и +32767;
-    Бит 1: +32767 и -32768.
+    0: -32768 and +32767;
+    1: +32767 and -32768.
 
-Между битами не должно быть никаких промежутков.  
-Между командами должен быть хотя бы один отсчет, состоящий из одних нулей (0).  
-Если нет команд, то в правом канале передаются только одни нулевые отсчеты.  
+There should be no gaps between the bits.  
+There must be at least one sample with zero value between commands.  
+If there are no commands, then there are only zero samples in the right channel.  
 
-Если по правому каналу массово идут нулевые отсчеты, A-Stim переходит в моно режим (в правый канал поступают отсчеты из левого канала).  
-Если по правому каналу массово идут не-нулевые отсчеты, A-Stim переходит в стандартный стерео режим.  
+If there are zero samples on the right channel, the A-Stim goes into mono (the right channel receives samples from the left channel).  
+If there are non-zero samples on the right channel, the A-Stim goes into standard stereo mode.  
 
-Команды:
-1) 000 - выключить левый канал, 001 - включить левый канал (default);
-2) 010 - выключить правый канал, 011 - включить левый канал (default);
-3) 100 - установить триггер 6 LOW, 101 - установить триггер 6 HIGH (default);
-3) 110 - установить триггер 7 LOW, 111 - установить триггер 7 HIGH (default).
+Commands:
+1) 000 - disable left channel, 001 - enable left channel (default);
+2) 010 - disable right channel, 011 - enable right channel (default);
+3) 100 - set trigger 6 LOW, 101 - set trigger 6 HIGH (default);
+3) 110 - set trigger 7 LOW, 111 - set trigger 7 HIGH (default).
 
-## Примеры файлов
+## File examples
 
-В папке [audio/examples](./audio/examples) приведены примеры WAV-файлов с добавленными командами в правом канале.  
-Файл [audio/examples/output_example_1s.wav](./audio/examples/output_example_1s.wav) получен в результате обработки файла [audio/origin/input_example_1s.wav](./audio/origin/input_example_1s.wav) скриптом [wavpatcher.py](./wavpatcher.py)
+The [audio/examples](./audio/examples) folder contains examples of WAV files with added commands in the right channel.  
+The file [audio/examples/output_example_1s.wav](./audio/examples/output_example_1s.wav) was obtained by processing the file [audio/origin/input_example_1s.wav](./audio/origin/input_example_1s.wav) by the script [wavpatcher.py](./wavpatcher.py).
