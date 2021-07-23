@@ -9,6 +9,15 @@ AStim works with 16-bit WAV files with a sampling rate of _44100 Hz_.
 
 To run the script you need [Python](https://python.org/) (3.4 or higher), [numpy](https://numpy.org/) and [scipy](https://scipy.org/) packages.
 
+## Usage
+
+The script is run through the command line, as follows
+<pre>
+$ python wavpatcher.py <i>input_file_path</i> -o <i>output_file_path</i>
+</pre>
+If `output_file_path` is not specified (by the flag `-o`) input file will be rewritten.  
+For a description of the arguments, see the help message, which can be shown by running with the `-h` flag.
+
 ## Command Description
 
 The commands are 3-bit, each bit is encoded with sequence of two 16-bit samples in the right channel:
