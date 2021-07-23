@@ -5,6 +5,10 @@ AStim works with 16-bit WAV files with a sampling rate of _44100 Hz_.
 
 ![](./img/nvx36+52_scheme.png)
 
+## Requirements
+
+To run the script you need [Python](https://python.org/) (3.4 or higher), [numpy](https://numpy.org/) and [scipy](https://scipy.org/) packages.
+
 ## Command Description
 
 The commands are 3-bit, each bit is encoded with sequence of two 16-bit samples in the right channel:
