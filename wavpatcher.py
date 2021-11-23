@@ -42,15 +42,16 @@ def _add_trigger(channels, ears):
         left = channels
     else:
         left = channels[:, 0]
-    left = np.append(np.zeros(_SILENCE), left)
-    right = _get_right_channel(len(left), ears)
+    dtype = left.dtype
+    left = np.append(np.zeros(_SILENCE, dtype), left)
+    right = _get_right_channel(len(left), ears, dtype)
     return np.column_stack([left, right])
 
 
-def _get_right_channel(size, ears):
+def _get_right_channel(size, ears, dtype):
     max_int16 = np.iinfo(np.int16).max
     min_int16 = np.iinfo(np.int16).min
-    result = np.zeros(size)
+    result = np.zeros(size, dtype)
     if ears == Ears.RIGHT:
         result[1] = min_int16
         result[2] = max_int16
