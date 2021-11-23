@@ -53,13 +53,15 @@ def _get_right_channel(size, ears, dtype):
     min_int16 = np.iinfo(np.int16).min
     result = np.zeros(size, dtype)
     if ears == Ears.RIGHT:
+        # 000 - disable left channel
         result[1] = min_int16
         result[2] = max_int16
         result[3] = min_int16
         result[4] = max_int16
         result[5] = min_int16
         result[6] = max_int16
-
+        # [7] is zero value between commands
+        # 011 - enable right channel
         result[8] = min_int16
         result[9] = max_int16
         result[10] = max_int16
@@ -67,13 +69,14 @@ def _get_right_channel(size, ears, dtype):
         result[12] = max_int16
         result[13] = min_int16
     elif ears == Ears.LEFT:
+        # 001 - enable left channel
         result[1] = min_int16
         result[2] = max_int16
         result[3] = min_int16
         result[4] = max_int16
         result[5] = max_int16
         result[6] = min_int16
-
+        # 010 - disable right channel
         result[8] = min_int16
         result[9] = max_int16
         result[10] = max_int16
@@ -81,13 +84,14 @@ def _get_right_channel(size, ears, dtype):
         result[12] = min_int16
         result[13] = max_int16
     else:
+        # 001 - enable left channel
         result[1] = min_int16
         result[2] = max_int16
         result[3] = min_int16
         result[4] = max_int16
         result[5] = max_int16
         result[6] = min_int16
-
+        # 011 - enable right channel
         result[8] = min_int16
         result[9] = max_int16
         result[10] = max_int16
@@ -95,6 +99,7 @@ def _get_right_channel(size, ears, dtype):
         result[12] = max_int16
         result[13] = min_int16
 
+    # 100 - set trigger 6 LOW
     result[_SILENCE] = max_int16
     result[_SILENCE + 1] = min_int16
     result[_SILENCE + 2] = min_int16
@@ -102,6 +107,7 @@ def _get_right_channel(size, ears, dtype):
     result[_SILENCE + 4] = min_int16
     result[_SILENCE + 5] = max_int16
 
+    # 101 - set trigger 6 HIGH (default)
     result[size - 6] = max_int16
     result[size - 5] = min_int16
     result[size - 4] = min_int16
