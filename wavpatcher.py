@@ -16,7 +16,7 @@ class Ears(Enum):
 def main():
     input_file, output_file = _parse_args()
     samplerate, channels = _read_file(input_file)
-    channels = _add_trigger(channels, Ears.BOTH)
+    channels = _add_trigger(channels)
     wavfile.write(output_file, samplerate, channels)
 
 
@@ -37,7 +37,7 @@ def _read_file(filepath):
     return wavfile.read(filepath)
 
 
-def _add_trigger(channels, ears):
+def _add_trigger(channels, ears=Ears.BOTH):
     if channels.ndim == 1:
         left = channels
     else:
