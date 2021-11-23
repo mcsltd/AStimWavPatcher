@@ -1,9 +1,16 @@
-# AStimWavPatcher
+# AStimWavPatcher Example
 
-Example script for writing AStim commands to WAV files (trigger 6).
-AStim works with 16-bit WAV files with a sampling rate of _44100 Hz_.
+The repository contains a file showing how to add AStim commands to a WAV file using the Python programming language.
+> Attention!  
+AStim works _only_ with __16-bit__ WAV files with a sampling rate of __44100 Hz__.
 
 ![](./img/nvx36+52_scheme.png)
+
+## Script description
+
+The script `wavpatcher.py` writes AStim commands to the right channel of the WAV file.
+Two commands are written to the beginning of the file, enabling both the left and right channels. Commands to enable either only left or only right channel are also present in the script, but by default both channels are enabled.
+Then trigger 6 is set to LOW. At the end of the file, trigger 6 is set to HIGH.
 
 ## Requirements
 
@@ -18,7 +25,7 @@ $ python wavpatcher.py <i>input_file_path</i> -o <i>output_file_path</i>
 If `output_file_path` is not specified (by the flag `-o`) input file will be rewritten.  
 For a description of the arguments, see the help message, which can be shown by running with the `-h` flag.
 
-## Command Description
+## AStim Command Description
 
 The commands are 3-bit, each bit is encoded with sequence of two 16-bit samples in the right channel:
 
