@@ -23,14 +23,17 @@ Commands:
 
 
 > Attention
-    1. AStim correctly transfers triggers only when they are encoded in the right channel with ASTIM commands and zeros elsewhere. 
+    1. AStim correctly transfers triggers only when they are encoded in the right channel with ASTIM commands and zeros elsewhere.
     No additional channel activation is required.
+
     2. Including a RESET CYCLE command when generating the audio file helps reduce trigger loss.
+
     3. Implementation details can be found in the add_triggers() and make_full_signal() functions in functions.py (Frequency_Following_Response_Astim v1).
 
-##  WAV with ASTIM triggers for Frequency Following Response Project
 
-A WAV file with audio stimuli was generated using ASTIM.
+##  WAV with ASTIM triggers for Frequency Following Response (FFR) Project
+
+A WAV file with audio stimuli was generated using ASTIM for FFR project.
 
 To mitigate bone‑conduction artifacts, two trigger types are used: 
 
@@ -45,36 +48,6 @@ Trigger timing protocol:
 \- At the end of the stimulus, the trigger is set to HIGH. 
 
 WAV file https://docs.mks.ru/en/file/6a575b8d86e5e#to-docs
-
-# Frequency Following Response Project
-https://en.wikipedia.org/wiki/Frequency_following_response
-
-Frequency Following Response (FFR) is a neurophysiological response to an auditory stimulus that reflects the neural processing of its acoustic parameters with high precision.
-
-## Equipment, software, documentation
-
-AStim Auditory stimulator for FFR paradigms https://mks.ru/en/products/ep-erp https://docs.mks.ru/ru/file/682f7130953d8#to-docs
-
-NVX 36 EEG acquisition system https://mks.ru/en/products/nvx
-
-NVX 136 EEG acquisition system https://mks.ru/en/products/nvx-136
-
-MCScap EEG cap system https://mks.ru/en/products/mcscap
-
-Electrodes MCScap-CS22 Dry/gel electrodes for stimulation and recording https://mcscap.ru/catalog/tes-elektrody-dlya-stimulyatsii/mcscap-cs22/
-
-NeoRec 1.6 Data acquisition and control software https://docs.mks.ru/en/file/65dd0ac5d6895#to-docs
-
-Frequency_Following_Response_Astim (v1) Custom Python suite for FFR stimulus generation and analysis https://github.com/asmyasikova83/Frequency_Following_Response_Astim.git
-
-FFR Astim v1 Documentation https://docs.mks.ru/download/6a50e1d6de9d5
-
-## Configuration with ASTIM + EEG NVX36 Suite
-
-![](./img/nvx36_scheme.jpg)
-
-## Configuration with ASTIM + EEG NVX36 Suite
-![](./img/nvx_136_scheme.jpg)
 
 ## Audio stimuli generation
 
@@ -109,6 +82,37 @@ Repeated “Da” syllable with inverted polarity
 For a full list of arguments, run:
 
             python create_wav.py -h
+
+
+# Frequency Following Response Project
+https://en.wikipedia.org/wiki/Frequency_following_response
+
+Frequency Following Response (FFR) is a neurophysiological response to an auditory stimulus that reflects the neural processing of its acoustic parameters with high precision.
+
+## Equipment, software, documentation
+
+AStim Auditory stimulator for FFR paradigms https://mks.ru/en/products/ep-erp https://docs.mks.ru/ru/file/682f7130953d8#to-docs
+
+NVX 36 EEG acquisition system https://mks.ru/en/products/nvx
+
+NVX 136 EEG acquisition system https://mks.ru/en/products/nvx-136
+
+MCScap EEG cap system https://mks.ru/en/products/mcscap
+
+Electrodes MCScap-CS22 Dry/gel electrodes for stimulation and recording https://mcscap.ru/catalog/tes-elektrody-dlya-stimulyatsii/mcscap-cs22/
+
+NeoRec 1.6 Data acquisition and control software https://docs.mks.ru/en/file/65dd0ac5d6895#to-docs
+
+Frequency_Following_Response_Astim (v1) Custom Python suite for FFR stimulus generation and analysis https://github.com/asmyasikova83/Frequency_Following_Response_Astim.git
+
+FFR Astim v1 Documentation https://docs.mks.ru/download/6a50e1d6de9d5
+
+## Configuration with ASTIM + EEG NVX36 Suite
+
+![](./img/nvx36_scheme.jpg)
+
+## Configuration with ASTIM + EEG NVX36 Suite
+![](./img/nvx_136_scheme.jpg)
 
 ## Preprocessing and Visualization of FFR
 
