@@ -147,7 +147,7 @@ The `command_line_ffr.py` script performs FFR preprocessing and generates a PDF 
 
 \- Correlation coefficient 𝑅 between the stimulus waveform and the FFR waveform (computed over averages).
 
-\- Relative power of FFR spectral peaks across averages.
+\- Signal to Noise Ratio in the time interval of formant transition [19.5 44.2] ms /DOI: 10.1016/j.heares.2019.107779/ (computed over averages).
 
 Data files (`.bfd/.fif`) and associated stimuli (`.wav`) are selected interactively.
 
