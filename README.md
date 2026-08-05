@@ -48,7 +48,7 @@ Commands:
 ## File examples
 
 The [audio/examples](./audio/examples) folder contains examples of WAV files with added commands in the right channel.  
-The file [audio/examples/output_example_1s.wav](./audio/examples/output_example_1s.wav) was obtained by processing the file [audio/origin/input_example_1s.wav](./audio/origin/input_example_1s.wav) by the script [wavpatcher.py](./wavpatcher.py).
+The file [audio/examples/output_example_1s.wav](./audio/examples/output_example_1s.wav) was obtained by processing the file [audio/origin/input_example_1s.wav](./audio/origin/input_example_1s.wav) by the script [wavpatcher.py](deprecated/wavpatcher.py).
 
 # Frequency Following Response Project
 https://en.wikipedia.org/wiki/Frequency_following_response
