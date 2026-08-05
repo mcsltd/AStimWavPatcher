@@ -4,7 +4,7 @@ The repository contains a file showing how to add AStim commands to a WAV file u
 > Attention!  
 AStim works _only_ with __16-bit__ WAV files with a sampling rate of __44100 Hz__.
 
-![](../../img/nvx36+52_scheme.png)
+![](./../img/nvx36+52_scheme.png)
 
 ## Script description
 
