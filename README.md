@@ -31,9 +31,9 @@ Commands:
 
 > Attention
 
-AStim correctly transfers triggers only when they are encoded in the right channel with ASTIM commands and zeros elsewhere. No additional channel activation is required.
-Including a RESET CYCLE command when generating the audio file helps reduce trigger loss.
-Implementation details can be found in the add_triggers() and make_full_signal() functions in functions.py (Frequency_Following_Response_Astim v1).
+    AStim correctly transfers triggers only when they are encoded in the right channel with ASTIM commands and zeros elsewhere. No additional channel activation is required.
+    Including a RESET CYCLE command when generating the audio file helps reduce trigger loss.
+    Implementation details can be found in the add_triggers() and make_full_signal() functions in functions.py (Frequency_Following_Response_Astim v1).
 
 ##  WAV file with ASTIM triggers for Frequency Following Response (FFR) Project
 
