@@ -72,7 +72,7 @@ Multiple sinusoidal tones at specified frequencies
 
 Repeated “Da” syllable with inverted polarity
 
-           python create_wav.py  --function repeated_da  --TS 100 --TP 100 --N 100 --INV 1 --wavfname '\\MCSSERVER\DB Temp\physionet.org\FFR\stim\DA+20.wav' 
+           python create_wav.py  --function repeated_da  --TS 100 --TP 100 --N 100 --INV 1 --dirname 'C:\Users\msasha\Desktop\AStim' --wavfname '\\MCSSERVER\DB Temp\physionet.org\FFR\stim\DA+20.wav' 
 
 --F frequency
 
