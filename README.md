@@ -55,6 +55,9 @@ WAV file https://docs.mks.ru/en/file/6a575b8d86e5e#to-docs
 
 ## Audio stimuli generation
 
+FFR stimulus generation software is avaialble at: https://github.com/asmyasikova83/Frequency_Following_Response_Astim.git
+
+
 The `create_wav.py` script (from Frequency_Following_Response_Astim v1) generates WAV files containing:
 
 \- Syllable stimuli (e.g., “Da”), or
